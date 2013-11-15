@@ -1,0 +1,39 @@
+#!/usr/bin/env ruby
+require 'pryaws'
+require 'pry'
+
+def die(msg)
+  puts msg
+  exit 1
+end
+
+def get_proxy()
+  e = ENV['https_proxy']
+  if e && !e.empty?
+    if !e.start_with? "http"
+      e = "https://#{e}"
+    end
+  end
+  return e
+end
+
+die 'AWS_ACCESS_KEY_ID not set' if ENV['AWS_ACCESS_KEY_ID'].nil?
+die 'AWS_SECRET_ACCESS_KEY not set' if ENV['AWS_SECRET_ACCESS_KEY'].nil?
+
+AWS.config({
+  :region => 'eu-west-1',
+  :http_wire_trace => ENV.include?("AWS_DEBUG"),
+  :proxy_uri => get_proxy()
+})
+
+sqs = AWS::SQS.new()
+sns = AWS::SNS.new()
+s3 = AWS::S3.new()
+ec2 = AWS::EC2.new()
+as = AWS::AutoScaling.new()
+cw = AWS::CloudWatch.new()
+sdb = AWS::SimpleDB.new()
+cf = AWS::CloudFormation.new()
+
+puts 'Available: sqs, sns, s3, ec2, as, cw, sdb, cf'
+binding.pry()

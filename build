@@ -1,0 +1,14 @@
+#!/bin/bash
+set -eu
+
+gem install builder bundler
+bundle install
+rm -vf *.gem
+#bundle exec rspec spec
+gem build pryaws.gemspec
+
+if [ "${1:-}" = "install" ] ; then
+  echo 'Installing...'
+  gem install pryaws-*.gem
+  echo 'Gem installed.'
+fi
