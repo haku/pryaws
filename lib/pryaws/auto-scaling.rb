@@ -16,7 +16,7 @@ module AWS
       end
 
       def set_min_max(min, max)
-        update(:max_size => min, :min_size => max)
+        update(:min_size => min, :max_size => max)
       end
 
     end
