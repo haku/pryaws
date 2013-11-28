@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |s|
   s.name        = 'pryaws'
-  s.version     = '0.0.3'
+  s.version     = '0.0.4'
   s.license     = 'Apache 2'
   s.date        = '2013-11-15'
   s.summary     = 'Interactive AWS console using Ruby Pry.'
