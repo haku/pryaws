@@ -3,21 +3,29 @@ require 'aws-sdk'
 
 module AWS
 
-  class AutoScaling
+  # http://docs.aws.amazon.com/AWSRubySDK/latest/AWS/CloudFormation.html
+  class CloudFormation
 
-    def find_for_instance_id(instance_id)
-      instances[instance_id].group()
+    def find_by_name(name)
+      stacks[name]
     end
 
-    # http://docs.aws.amazon.com/AWSRubySDK/latest/AWS/AutoScaling/Group.html
-    class Group
+    class Stack
 
-      def info()
-        "#{name} #{min_size}..#{max_size} [#{auto_scaling_instances.map{|i| i.id}.join(',')}]"
+      def info
+        sr = status_reason()
+        "#{name()} (#{status()}#{sr.nil? ? '' : ' :' + sr})"
       end
 
-      def set_min_max(min, max)
-        update(:max_size => min, :min_size => max)
+      def save_template(path)
+        File.open(path, 'w'){|f| f.write JSON.pretty_generate(JSON.parse(template()))}
+      end
+
+      def set_param(key, value)
+        p = parameters()
+        raise "Invalid param '#{key}'." if p[key].nil?
+        p[key] = value
+        update :template => template, :parameters => p, :capabilities => ['CAPABILITY_IAM']
       end
 
     end
