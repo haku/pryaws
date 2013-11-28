@@ -3,6 +3,7 @@
 Gem::Specification.new do |s|
   s.name        = 'pryaws'
   s.version     = '0.0.2'
+  s.license     = 'Apache 2'
   s.date        = '2013-11-15'
   s.summary     = 'Interactive AWS console using Ruby Pry.'
   s.description = 'Loads a batch of helpers that make the AWS SDK easier to interact with and drop to binding.pry().'
