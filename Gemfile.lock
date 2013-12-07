@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    pryaws (0.0.4)
+    pryaws (0.0.5)
       aws-sdk
       pry
 
