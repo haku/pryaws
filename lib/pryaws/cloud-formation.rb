@@ -25,6 +25,7 @@ module AWS
         p = parameters()
         raise "Invalid param '#{key}'." if p[key].nil?
         p[key] = value
+        p = Hash[*p.map{|k,v| [k, v || ""]}.flatten]
         update :template => template, :parameters => p, :capabilities => ['CAPABILITY_IAM']
       end
 
