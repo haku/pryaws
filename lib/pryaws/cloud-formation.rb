@@ -22,9 +22,15 @@ module AWS
       end
 
       def set_param(key, value)
+        set_params({key => value})
+      end
+
+      def set_params(hash)
         p = parameters()
-        raise "Invalid param '#{key}'." if p[key].nil?
-        p[key] = value
+        hash.each do |key,val|
+          raise "Invalid param '#{key}'." if p[key].nil?
+        end
+        p = p.merge(hash)
         p = Hash[*p.map{|k,v| [k, v || ""]}.flatten]
         update :template => template, :parameters => p, :capabilities => ['CAPABILITY_IAM']
       end
