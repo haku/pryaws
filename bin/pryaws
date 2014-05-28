@@ -33,6 +33,7 @@ ec2 = AWS::EC2.new()
 as = AWS::AutoScaling.new()
 cw = AWS::CloudWatch.new()
 sdb = AWS::SimpleDB.new()
+ddb = AWS::DynamoDB.new()
 cf = AWS::CloudFormation.new()
 
 puts 'Available: sqs, sns, s3, ec2, as, cw, sdb, cf'
