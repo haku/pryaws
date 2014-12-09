@@ -1,4 +1,3 @@
-require 'aws'
 require 'aws-sdk'
 
 module AWS
