@@ -19,6 +19,6 @@ Gem::Specification.new do |s|
   s.test_files  = []
   s.require_paths = ['lib']
 
-  s.add_dependency 'aws-sdk', '~> 1.60.2'
+  s.add_dependency 'aws-sdk-v1', '~> 1.66', '>= 1.66.0'
   s.add_dependency 'pry', '~> 0.10.1'
 end
