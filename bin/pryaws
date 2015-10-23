@@ -38,3 +38,4 @@ cf = AWS::CloudFormation.new()
 
 puts 'Available: sqs, sns, s3, ec2, as, cw, sdb, cf'
 binding.pry()
+puts 'done.'
